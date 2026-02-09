@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+# Logs
+logs/
+*.log
+# Test results
+test_results/
+# Environment variables
+.env

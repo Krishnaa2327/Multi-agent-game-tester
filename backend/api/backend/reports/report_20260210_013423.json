@@ -1,0 +1,320 @@
+{
+  "report_id": "report_20260210_013423",
+  "timestamp": "2026-02-10T01:34:23.361204",
+  "game_url": "https://play.ezygamers.com/",
+  "game_analysis": {
+    "type": "puzzle game",
+    "rules": "Interact with elements to solve the puzzle",
+    "win_condition": "Reach the game objective"
+  },
+  "summary": {
+    "total_tests": 10,
+    "passed": 0,
+    "failed": 0,
+    "flaky": 0,
+    "errors": 10,
+    "avg_reproducibility": 0.0
+  },
+  "test_results": [
+    {
+      "test_id": "TEST_01",
+      "test_name": "Happy Path",
+      "steps": [
+        "Start game -",
+        "Click on element A -",
+        "Move to next level -",
+        "Win condition reached"
+      ],
+      "expected": "Win Condition Reached",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_02",
+      "test_name": "Happy Path",
+      "steps": [
+        "Start game -",
+        "Click on invalid element -",
+        "Error message displayed"
+      ],
+      "expected": "Error Message Displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_14",
+      "test_name": "Happy Path",
+      "steps": [
+        "Click on element A -",
+        "Click on element B -",
+        "Win condition reached and level unlocked"
+      ],
+      "expected": "Win Condition Reached",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_05",
+      "test_name": "Edge Case",
+      "steps": [
+        "Click on element with invalid input (e.g. empty string) -",
+        "Error message displayed"
+      ],
+      "expected": "Error Message Displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_08",
+      "test_name": "Invalid Input",
+      "steps": [
+        "Enter invalid input (e.g. special characters) -",
+        "Error message displayed"
+      ],
+      "expected": "Error Message Displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_11",
+      "test_name": "Stress Test",
+      "steps": [
+        "Simulate 1000 concurrent user interactions -",
+        "No crashes or errors reported"
+      ],
+      "expected": "No Crashes or Errors Reported",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_18",
+      "test_name": "Stress Test",
+      "steps": [
+        "Simulate 500 concurrent user interactions while playing audio -",
+        "No crashes or errors reported"
+      ],
+      "expected": "No Crashes or Errors Reported",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_03",
+      "test_name": "Happy Path",
+      "steps": [
+        "Start game -",
+        "Click on multiple elements in sequence -",
+        "Level progression confirmed"
+      ],
+      "expected": "Level Progression Confirmed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_06",
+      "test_name": "Edge Case",
+      "steps": [
+        "Click on element that doesn't exist in the game -",
+        "\"Not Found\" error message displayed"
+      ],
+      "expected": "Error Message Displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_15",
+      "test_name": "Edge Case",
+      "steps": [
+        "Click on element while playing audio -",
+        "Audio continues playing smoothly"
+      ],
+      "expected": "Audio Continues Playing Smoothly",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    }
+  ],
+  "triage_notes": [
+    "TEST_01 [ERROR]: Both attempts failed to execute",
+    "TEST_02 [ERROR]: Both attempts failed to execute",
+    "TEST_14 [ERROR]: Both attempts failed to execute",
+    "TEST_05 [ERROR]: Both attempts failed to execute",
+    "TEST_08 [ERROR]: Both attempts failed to execute",
+    "TEST_11 [ERROR]: Both attempts failed to execute",
+    "TEST_18 [ERROR]: Both attempts failed to execute",
+    "TEST_03 [ERROR]: Both attempts failed to execute",
+    "TEST_06 [ERROR]: Both attempts failed to execute",
+    "TEST_15 [ERROR]: Both attempts failed to execute"
+  ],
+  "recommendations": [
+    "High error rate detected. Consider increasing timeouts and improving wait conditions."
+  ]
+}

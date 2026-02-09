@@ -1,0 +1,9 @@
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+playwright==1.41.0
+langchain==0.1.0
+langchain-community==0.0.13
+ollama==0.1.6
+pydantic==2.5.0
+python-multipart==0.0.6
+aiofiles==23.2.1

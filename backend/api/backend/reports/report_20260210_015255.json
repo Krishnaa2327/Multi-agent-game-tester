@@ -1,0 +1,311 @@
+{
+  "report_id": "report_20260210_015255",
+  "timestamp": "2026-02-10T01:52:55.352740",
+  "game_url": "https://play.ezygamers.com/",
+  "game_analysis": {
+    "type": "puzzle game",
+    "rules": "Interact with elements to solve the puzzle",
+    "win_condition": "Reach the game objective"
+  },
+  "summary": {
+    "total_tests": 10,
+    "passed": 0,
+    "failed": 0,
+    "flaky": 0,
+    "errors": 10,
+    "avg_reproducibility": 0.0
+  },
+  "test_results": [
+    {
+      "test_id": "TEST_18",
+      "test_name": "Invalid Input",
+      "steps": [
+        "Open game",
+        "Perform action",
+        "Check result"
+      ],
+      "expected": "Should behave correctly",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_02",
+      "test_name": "Happy Path",
+      "steps": [
+        "Solve 3x+2=7 equation"
+      ],
+      "expected": "Correct answer \"5\" displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_05",
+      "test_name": "Happy Path",
+      "steps": [
+        "Unscramble letters to form word FROGS"
+      ],
+      "expected": "Correct unscrambled word displayed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_19",
+      "test_name": "Stress Test",
+      "steps": [
+        "Open game",
+        "Perform action",
+        "Check result"
+      ],
+      "expected": "Should behave correctly",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_20",
+      "test_name": "Happy Path",
+      "steps": [
+        "Open game",
+        "Perform action",
+        "Check result"
+      ],
+      "expected": "Should behave correctly",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_01",
+      "test_name": "Happy Path",
+      "steps": [
+        "Click button to unlock door"
+      ],
+      "expected": "Door unlocks with success message",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "TIMEOUT",
+          "error": "Attempt timed out"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_06",
+      "test_name": "Edge Case",
+      "steps": [
+        "Enter invalid input \"abc\" in search bar"
+      ],
+      "expected": "Error message appears with \"Invalid Input\"",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_07",
+      "test_name": "Edge Case",
+      "steps": [
+        "Leave field blank and try to submit form"
+      ],
+      "expected": "Error message appears with \"Please fill out all fields\"",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_08",
+      "test_name": "Edge Case",
+      "steps": [
+        "Missing required object on screen"
+      ],
+      "expected": "Error message appears with \"Required item not found\"",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    },
+    {
+      "test_id": "TEST_09",
+      "test_name": "Edge Case",
+      "steps": [
+        "Duplicate input in game mechanics"
+      ],
+      "expected": "Game freezes or error message appears",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        },
+        {
+          "attempt": 2,
+          "status": "ERROR",
+          "error": "Target page, context or browser has been closed"
+        }
+      ],
+      "artifacts": {
+        "screenshots": [],
+        "console_logs": []
+      },
+      "verdict": "ERROR",
+      "reproducibility_score": 0.0,
+      "validation_notes": "Both attempts failed to execute"
+    }
+  ],
+  "triage_notes": [
+    "TEST_18 [ERROR]: Both attempts failed to execute",
+    "TEST_02 [ERROR]: Both attempts failed to execute",
+    "TEST_05 [ERROR]: Both attempts failed to execute",
+    "TEST_19 [ERROR]: Both attempts failed to execute",
+    "TEST_20 [ERROR]: Both attempts failed to execute",
+    "TEST_01 [ERROR]: Both attempts failed to execute",
+    "TEST_06 [ERROR]: Both attempts failed to execute",
+    "TEST_07 [ERROR]: Both attempts failed to execute",
+    "TEST_08 [ERROR]: Both attempts failed to execute",
+    "TEST_09 [ERROR]: Both attempts failed to execute"
+  ],
+  "recommendations": [
+    "High error rate detected. Consider increasing timeouts and improving wait conditions."
+  ]
+}

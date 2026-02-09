@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Game Tester POC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-analyze {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .btn-generate {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .btn-execute {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            flex: 0;
+            min-width: 100px;
+        }
+        
+        .status-bar {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .status-bar.visible {
+            display: block;
+        }
+        
+        .status-text {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        .output-area {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            height: 400px;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        
+        .output-area::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .output-area::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        
+        .output-area::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 5px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+        }
+        
+        .log-info {
+            color: #4ec9b0;
+        }
+        
+        .log-success {
+            color: #6a9955;
+        }
+        
+        .log-error {
+            color: #f48771;
+        }
+        
+        .log-warning {
+            color: #dcdcaa;
+        }
+        
+        .results-summary {
+            display: none;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        
+        .results-summary.visible {
+            display: block;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .summary-card .number {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .summary-card .label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .summary-card.passed .number { color: #28a745; }
+        .summary-card.failed .number { color: #dc3545; }
+        .summary-card.flaky .number { color: #ffc107; }
+        .summary-card.errors .number { color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Multi-Agent Game Tester</h1>
+            <p>AI-Powered Automated Game Testing System</p>
+        </div>
+        
+        <div class="content">
+            <div class="input-group">
+                <label for="gameUrl">Game URL</label>
+                <input 
+                    type="text" 
+                    id="gameUrl" 
+                    placeholder="https://play.ezygamers.com/" 
+                    value="https://play.ezygamers.com/"
+                >
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-analyze" onclick="analyzeGame()">
+                    1️⃣ Analyze Game
+                </button>
+                <button class="btn-generate" onclick="generateTests()" disabled id="btnGenerate">
+                    2️⃣ Generate Tests
+                </button>
+                <button class="btn-execute" onclick="executeTests()" disabled id="btnExecute">
+                    3️⃣ Execute Tests
+                </button>
+                <button class="btn-reset" onclick="resetState()">
+                    🔄 Reset
+                </button>
+            </div>
+            
+            <div class="status-bar" id="statusBar">
+                <div class="status-text" id="statusText">Ready</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <div class="output-area" id="output"></div>
+            
+            <div class="results-summary" id="resultsSummary">
+                <h3>Test Results Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-card passed">
+                        <div class="number" id="passedCount">0</div>
+                        <div class="label">Passed</div>
+                    </div>
+                    <div class="summary-card failed">
+                        <div class="number" id="failedCount">0</div>
+                        <div class="label">Failed</div>
+                    </div>
+                    <div class="summary-card flaky">
+                        <div class="number" id="flakyCount">0</div>
+                        <div class="label">Flaky</div>
+                    </div>
+                    <div class="summary-card errors">
+                        <div class="number" id="errorCount">0</div>
+                        <div class="label">Errors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        const output = document.getElementById('output');
+        const statusBar = document.getElementById('statusBar');
+        const statusText = document.getElementById('statusText');
+        const progressFill = document.getElementById('progressFill');
+        const resultsSummary = document.getElementById('resultsSummary');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+            entry.textContent = `[${timestamp}] ${message}`;
+            output.appendChild(entry);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function setStatus(text, progress = null) {
+            statusBar.classList.add('visible');
+            statusText.textContent = text;
+            if (progress !== null) {
+                progressFill.style.width = `${progress}%`;
+            }
+        }
+
+        function progressFromStatus(status) {
+            const map = {
+                idle: 0,
+                analyzing: 20,
+                analyzed: 30,
+                tests_generated: 50,
+                executing: 70,
+                completed: 100,
+                error: 0
+            };
+            return map[status] ?? 0;
+        }
+
+        async function analyzeGame() {
+            const url = document.getElementById('gameUrl').value;
+            if (!url) {
+                log('Please enter a game URL', 'error');
+                return;
+            }
+
+            log('Starting game analysis...', 'info');
+            setStatus('Analyzing game...', 20);
+
+            try {
+                const res = await fetch(`${API_BASE}/api/analyze`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || 'Analysis failed');
+
+                log('✓ Game analysis complete!', 'success');
+                log(`Type: ${data.game_info.type}`, 'info');
+                log(`Rules: ${data.game_info.rules}`, 'info');
+                log(`Win Condition: ${data.game_info.win_condition}`, 'info');
+
+                setStatus('Game analyzed', 30);
+                document.getElementById('btnGenerate').disabled = false;
+
+            } catch (e) {
+                log(`✗ ${e.message}`, 'error');
+                setStatus('Analysis failed', 0);
+            }
+        }
+
+        async function generateTests() {
+            log('Generating test cases...', 'info');
+            setStatus('Generating tests...', 40);
+
+            try {
+                const res = await fetch(`${API_BASE}/api/generate-tests`, { method: 'POST' });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || 'Generation failed');
+
+                log(`✓ Generated ${data.test_count} tests`, 'success');
+                data.tests.slice(0, 3).forEach((t, i) => {
+                    log(`${i + 1}. ${t.id} (${t.category})`, 'info');
+                });
+                log('... and 7 more', 'info');
+
+                setStatus('Tests generated', 50);
+                document.getElementById('btnExecute').disabled = false;
+
+            } catch (e) {
+                log(`✗ ${e.message}`, 'error');
+                setStatus('Generation failed', 30);
+            }
+        }
+
+        async function executeTests() {
+            log('Starting test execution...', 'warning');
+            setStatus('Executing tests...', 70);
+            document.getElementById('btnExecute').disabled = true;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/execute-tests`, { method: 'POST' });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || 'Execution start failed');
+
+                pollStatus();
+
+            } catch (e) {
+                log(`✗ ${e.message}`, 'error');
+                setStatus('Execution failed', 0);
+            }
+        }
+
+        async function pollStatus() {
+            const interval = setInterval(async () => {
+                try {
+                    const res = await fetch(`${API_BASE}/api/status`);
+                    const data = await res.json();
+
+                    const progress = progressFromStatus(data.status);
+                    setStatus(`Status: ${data.status}`, progress);
+
+                    if (data.status === 'completed') {
+                        clearInterval(interval);
+                        showResults(data.report);
+                    }
+
+                    if (data.status === 'error') {
+                        clearInterval(interval);
+                        log('✗ Execution failed', 'error');
+                    }
+
+                } catch {
+                    clearInterval(interval);
+                    log('✗ Status polling failed', 'error');
+                }
+            }, 2000);
+        }
+
+        function showResults(report) {
+            log('TEST EXECUTION COMPLETE', 'success');
+
+            const s = report.summary;
+            log(`Passed: ${s.passed}`, 'success');
+            log(`Failed: ${s.failed}`, 'error');
+            log(`Flaky: ${s.flaky}`, 'warning');
+            log(`Errors: ${s.errors}`, 'error');
+
+            document.getElementById('passedCount').textContent = s.passed;
+            document.getElementById('failedCount').textContent = s.failed;
+            document.getElementById('flakyCount').textContent = s.flaky;
+            document.getElementById('errorCount').textContent = s.errors;
+
+            resultsSummary.classList.add('visible');
+            setStatus('Execution complete', 100);
+        }
+
+        async function resetState() {
+            await fetch(`${API_BASE}/api/reset`, { method: 'POST' });
+            output.innerHTML = '';
+            resultsSummary.classList.remove('visible');
+            progressFill.style.width = '0%';
+            document.getElementById('btnGenerate').disabled = true;
+            document.getElementById('btnExecute').disabled = true;
+            log('✓ State reset', 'success');
+        }
+
+        log('Multi-Agent Game Tester ready!', 'success');
+    </script>
+
+</body>
+</html>
